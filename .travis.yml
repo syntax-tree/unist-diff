@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+- '4.0'
+- '6.0'
+after_script: bash <(curl -s https://codecov.io/bash)
+deploy:
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+      secure: pxHatSGmro/OrE+BnXSwakDGwq8IaaCf0FhrdQj8TvAx3a2JJcmpHDVXQiK6QdDGDCMTrfaMUFMtWcpWYOVpUiSyDTvoRLRxEeGqEsDgLZkAxt1rGcU5EiCfaSdhDpMZHxAW586NLqqMvcrVAFMgM504GRWWrH7atYH8Xy9lMiefaJEDtc3a0lMkLnliMFg29nVgSp5KUKvHbY8i+pUsxvo11H0T4NGeiKgnkcwN5bVKsOWBY1zgbEHigF/I8XaUkOr/o94j9SGDD3qRVmoXbufZoav1YSIxuWDdkFxIvsUNje5yCMSxQFMyAQ5Sl7HMDbNkoPRB98A80SbJq+vggm14mmWdhTeiwwHWqoA7VbcRKKmChLZ5V/z26+JWA1dKcMruYGcfVBSxkQNs599jpXyJYtmIJ7KFLy5FJrKT6iMXYQIssZYk9HZ2hjebmXFdW9nzki5qvarRDI13aFLFC/81owC9Mk0Xyf0ofH5oybzvXX0IR6CrGPv0TIC2p+m/itRqHbX7TQVgvA2/i+K8UY1ByRkxCVfhU1GasBHkTZLgR7Qap8XrB6U7bGVjuOziPea3S/KVkwb964xtbYILrYfobcgmv7aMxYRbT+a41l468h5GFSHfPu8NDc/qH16xgMrytB5kAQvXV+217/Xe+aXjLA+lV1IqbAcXwVs5orY=
+    on:
+      tags: true
+      node: '4.0'
+  - provider: releases
+    api_key:
+      secure: nNUQKTPTsbRQKgV1mUQ9jt52w+lNGrQtEpd975K9jQGxWvBNJaHb0eTDbuJCO7+OgG77yKiGQcr9gc7oM4WjFFcLoR2qWxRXsgGuyAIiMU85RRBvHXp7+gv1Qa/ko15MKmJo0ACxizAEiT6SIpwdQpo0AaopQKxg26pNN9S52YK6WtUjbgbIjRbcntFXi2CByO6W5d3rXX2pWgoE+j+Qm2UpA8j09i6pghVUcBb+7ngy8D0PBYnXW3pTKzZiFuhdW93n2VPl553q0FQe9jQyoaC0DYkeT1JOyLCd7uME+mZaCsiue2gdWlY6Vbbitv4ccK0qvUblMPvusDV5LJGz2c8V3L9+uC90x30LO1sX/XXG26nyuN2YrKqdmuJJWVqr3cz6c6Z94yBdcnuReJqo1IOuUetwo1fKnB7G9k3qkhDKc3PPzB5Xz/VlKQTnzS5TrSrzog8wWYQhauU5EO/+Bivyyf7FUc+/+ykSIVS+ysfwZw65wOrNaAW3oPs0kJdouXsdotcWsSt+Xbp6FMkhju92xifdWr99MrXzsMpB/ToNdHgQ3LPp+JrU61ASfcb3ojH8k+SggVI5LnsDKtoBIQy8LyWr6FHAwxDadtjyuBAPul/+emLQiUalzG9Y3/+lmQDWT2piha0W0Fw643F/GdxNrdKqws6/MX70el2VhMY=
+    file:
+      - "unist-diff.js"
+      - "unist-diff.min.js"
+    on:
+      tags: true
+      node: '7.0'

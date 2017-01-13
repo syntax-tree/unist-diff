@@ -1,0 +1,59 @@
+{
+  "name": "unist-diff",
+  "version": "0.0.0",
+  "description": "Diff two unist trees",
+  "license": "MIT",
+  "keywords": [
+    "unist",
+    "node",
+    "diff",
+    "tree",
+    "node",
+    "patch"
+  ],
+  "repository": "https://github.com/syntax-tree/unist-diff",
+  "bugs": "https://github.com/syntax-tree/unist-diff/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "dependencies": {},
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "esmangle": "^1.0.1",
+    "nyc": "^10.0.0",
+    "remark": "^6.0.1",
+    "remark-cli": "^2.0.0",
+    "remark-preset-wooorm": "^1.0.0",
+    "tape": "^4.0.0",
+    "xo": "^0.17.1"
+  },
+  "scripts": {
+    "build-md": "remark . -qfo",
+    "build-bundle": "browserify index.js --bare -s unistDiff > unist-diff.js",
+    "build-mangle": "esmangle < unist-diff.js > unist-diff.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "xo": {
+    "space": true,
+    "ignores": [
+      "unist-diff.js"
+    ]
+  },
+  "remarkConfig": {
+    "presets": "wooorm"
+  }
+}
