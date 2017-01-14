@@ -17,7 +17,11 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "getprototypeof": "^1.0.0",
+    "is-object": "^1.0.1",
+    "x-is-array": "^0.1.0"
+  },
   "files": [
     "index.js"
   ],
@@ -49,6 +53,9 @@
   },
   "xo": {
     "space": true,
+    "rules": {
+      "max-params": "off"
+    },
     "ignores": [
       "unist-diff.js"
     ]
