@@ -54,7 +54,7 @@ test('unist-diff', function (t) {
   });
 
   t.test('`props`', function (st) {
-    st.plan(11);
+    st.plan(12);
 
     (function () {
       var alpha = {type: 'alpha'};
@@ -65,6 +65,24 @@ test('unist-diff', function (t) {
         diff(left, right),
         {left: left},
         'should not return a patch for equal keys with the same primitive values'
+      );
+    })();
+
+    (function () {
+      var left = {type: 'alpha', bravo: true, value: 'charlie'};
+      var right = {type: 'alpha', bravo: false, value: 'charlie'};
+
+      st.deepEqual(
+        diff(left, right),
+        {
+          0: {
+            type: 'props',
+            left: left,
+            right: {bravo: false}
+          },
+          left: left
+        },
+        'should not return a patch for changed primitives'
       );
     })();
 

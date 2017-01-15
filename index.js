@@ -46,7 +46,7 @@ function walk(left, right, patch, index) {
 
 function diffText(apply, left, right) {
   return left.value === right.value ?
-    undefined :
+    apply :
     append(apply, {type: 'text', left: left, right: right});
 }
 
@@ -84,7 +84,7 @@ function diffChildren(apply, left, right, patch, offset) {
 
 function diffProperties(apply, left, right) {
   var diff = diffObjects(left, right);
-  return diff ? append(apply, {type: 'props', left: left, right: diff}) : undefined;
+  return diff ? append(apply, {type: 'props', left: left, right: diff}) : apply;
 }
 
 function diffObjects(left, right) {
