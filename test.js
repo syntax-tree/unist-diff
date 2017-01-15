@@ -54,7 +54,7 @@ test('unist-diff', function (t) {
   });
 
   t.test('`props`', function (st) {
-    st.plan(10);
+    st.plan(11);
 
     (function () {
       var alpha = {type: 'alpha'};
@@ -203,6 +203,25 @@ test('unist-diff', function (t) {
           left: left
         },
         'should return a `props` patch for a changed array'
+      );
+    })();
+
+    (function () {
+      var alpha = {type: 'alpha'};
+      var left = {type: 'bravo', charlie: [1, 2], children: [alpha]};
+      var right = {type: 'bravo', charlie: {delta: true}, children: [alpha]};
+
+      st.deepEqual(
+        diff(left, right),
+        {
+          0: {
+            type: 'props',
+            left: left,
+            right: {charlie: {delta: true}}
+          },
+          left: left
+        },
+        'should return a `props` patch for an array changed to an object'
       );
     })();
 
