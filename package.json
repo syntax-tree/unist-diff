@@ -1,6 +1,6 @@
 {
   "name": "unist-diff",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Diff two unist trees",
   "license": "MIT",
   "keywords": [
