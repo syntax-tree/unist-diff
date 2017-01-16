@@ -157,8 +157,7 @@ Patches represent changes.  They come with three properties:
 In the diff:
 
 *   If a key is removed, the key’s value is set to `undefined`.
-*   If the new value is of the same non-primitive type as the new value
-    (their prototype’s are equal, thus both array or both object), the key’s
+*   If the new value and the old value are both plain objects, the key’s
     value is set to a `PropsDiff` of both values.
 *   In all other cases, the key’s value is set to the new value.
 

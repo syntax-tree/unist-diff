@@ -4,6 +4,8 @@ var array = require('x-is-array');
 var object = require('is-object');
 var proto = require('getprototypeof');
 
+var objectProto = Object.prototype;
+
 var ignoredKeys = ['type', 'children', 'value'];
 
 module.exports = diff;
@@ -112,17 +114,17 @@ function diffObjects(left, right) {
       continue;
     }
 
-    if (object(leftValue) && object(rightValue)) {
-      if (proto(rightValue) === proto(leftValue)) {
-        objectDiff = diffObjects(leftValue, rightValue);
+    if (
+      object(leftValue) &&
+      object(rightValue) &&
+      proto(rightValue) === objectProto &&
+      proto(leftValue) === objectProto
+    ) {
+      objectDiff = diffObjects(leftValue, rightValue);
 
-        if (objectDiff) {
-          diff = diff || {};
-          diff[leftKey] = objectDiff;
-        }
-      } else {
+      if (objectDiff) {
         diff = diff || {};
-        diff[leftKey] = rightValue;
+        diff[leftKey] = objectDiff;
       }
     } else {
       diff = diff || {};

@@ -88,18 +88,6 @@ test('unist-diff', function (t) {
 
     (function () {
       var alpha = {type: 'alpha'};
-      var left = {type: 'bravo', charlie: [1, 2, 3], children: [alpha]};
-      var right = {type: 'bravo', charlie: [1, 2, 3], children: [alpha]};
-
-      st.deepEqual(
-        diff(left, right),
-        {left: left},
-        'should not return a patch for deep equal arrays'
-      );
-    })();
-
-    (function () {
-      var alpha = {type: 'alpha'};
       var left = {type: 'bravo', data: {charlie: 'delta', echo: true, foxtrot: 1, golf: null}, children: [alpha]};
       var right = {type: 'bravo', data: {charlie: 'delta', echo: true, foxtrot: 1, golf: null}, children: [alpha]};
 
@@ -164,6 +152,25 @@ test('unist-diff', function (t) {
           left: left
         },
         'should return a `props` patch for a changed key'
+      );
+    })();
+
+    (function () {
+      var alpha = {type: 'alpha'};
+      var left = {type: 'bravo', charlie: [1, 2, 3], children: [alpha]};
+      var right = {type: 'bravo', charlie: [1, 2, 3], children: [alpha]};
+
+      st.deepEqual(
+        diff(left, right),
+        {
+          0: {
+            type: 'props',
+            left: left,
+            right: {charlie: [1, 2, 3]}
+          },
+          left: left
+        },
+        'should return a patch for deep equal arrays'
       );
     })();
 
