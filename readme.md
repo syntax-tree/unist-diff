@@ -142,41 +142,41 @@ Patches represent changes.  They come with three properties:
 
 #### `remove`
 
-*   `type`: `'remove'`
+*   `type` (`'remove'`)
 *   `left` ([`Node`][node]) — Left node
-*   `right`: `null`
+*   `right` (`null`)
 
 #### `insert`
 
-*   `type`: `'insert'`
-*   `left`: `null`
+*   `type` (`'insert'`)
+*   `left` (`null`)
 *   `right` ([`Node`][node]) — Right node
 
 #### `replace`
 
-*   `type`: `'node'`
+*   `type` (`'node'`)
 *   `left` ([`Node`][node]) — Left node
 *   `right` ([`Node`][node]) — Right node
 
 #### `props`
 
-*   `type`: `'props'`
+*   `type` (`'props'`)
 *   `left` ([`Node`][node]) — Left node
-*   `right`: [`PropsDiff`][propsdiff]
+*   `right` ([`PropsDiff`][propsdiff])
 
 #### `text`
 
-*   `type`: `'text'`
+*   `type` (`'text'`)
 *   `left` ([`Node`][node]) — Left node
 *   `right` ([`Node`][node]) — Right node
 
 #### `order`
 
-*   `type`: `'order'`
+*   `type` (`'order'`)
 *   `left` ([`Node`][node]) — Parent node
 *   `right` ([`MoveDiff`][movediff]) — Reorder
 
-## `PropsDiff`
+### `PropsDiff`
 
 `PropsDiff` is an object mapping keys to new values.
 
@@ -187,7 +187,7 @@ In the diff:
     value is set to a `PropsDiff` of both values.
 *   In all other cases, the key’s value is set to the new value.
 
-## `MoveDiff`
+### `MoveDiff`
 
 `MoveDiff` is an object with two arrays: `removes` and `inserts`.
 They always have equal lengths, and are never both empty.  Objects in
