@@ -167,27 +167,24 @@ function reorder(leftChildren, rightChildren) {
   var rightChildIndex = keyIndex(rightChildren);
   var rightKeys = rightChildIndex.key;
   var rightIndex = rightChildIndex.index;
-  var removes = [];
-  var inserts = [];
   var leftLength = leftChildren.length;
   var rightLength = rightChildren.length;
   var leftOffset = 0;
   var rightOffset = 0;
-  var leftKey = leftIndex[leftOffset];
-  var rightKey = rightIndex[rightOffset];
-  var leftMoved = [];
   var rightMoved = [];
-  var leftDistance;
-  var rightDistance;
-  var index = -1;
+  var leftMoved = [];
+  var removes = [];
+  var inserts = [];
   var next = [];
-  var key;
+  var index = -1;
+  var leftKey;
+  var rightKey;
 
   while (++index < leftLength) {
-    key = leftIndex[index];
+    leftKey = leftIndex[index];
 
-    if (key in rightKeys) {
-      next.push(rightChildren[rightKeys[key]]);
+    if (leftKey in rightKeys) {
+      next.push(rightChildren[rightKeys[leftKey]]);
     } else {
       next.push(null);
     }
@@ -196,75 +193,52 @@ function reorder(leftChildren, rightChildren) {
   index = -1;
 
   while (++index < rightLength) {
-    key = rightIndex[index];
-
-    if (!(key in leftKeys)) {
+    if (!(rightIndex[index] in leftKeys)) {
       next.push(rightChildren[index]);
     }
   }
 
+  leftChildren = next;
+  leftChildIndex = keyIndex(leftChildren);
+  leftKeys = leftChildIndex.key;
+  leftIndex = leftChildIndex.index;
+  leftLength = leftChildren.length;
+  rightKey = rightIndex[rightOffset];
+  leftKey = leftIndex[leftOffset];
+
   while (leftOffset < leftLength || rightOffset < rightLength) {
     /* The left node moved already. */
     if (leftMoved.indexOf(leftOffset) !== -1) {
-      removes.push({
-        from: leftOffset,
-        left: leftChildren[leftOffset],
-        right: rightChildren[rightKeys[leftKey]]
-      });
-
+      removes.push({left: leftChildren[leftOffset], right: leftOffset});
       leftKey = leftIndex[++leftOffset];
     /* The right node moved already. */
     } else if (rightMoved.indexOf(rightOffset) !== -1) {
-      removes.push({
-        from: rightOffset,
-        left: leftChildren[leftKeys[rightKey]],
-        right: rightChildren[rightOffset]
-      });
-
+      removes.push({left: rightChildren[rightOffset], right: leftKeys[rightKey]});
       rightKey = rightIndex[++rightOffset];
     } else if (!rightKey) {
       leftKey = leftIndex[++leftOffset];
     } else if (!leftKey) {
       rightKey = rightIndex[++rightOffset];
-    } else if (!(leftKey in rightKeys)) {
-      leftKey = leftIndex[++leftOffset];
-    } else if (!(rightKey in leftKeys)) {
-      rightKey = rightIndex[++rightOffset];
     } else if (rightKey === leftKey) {
       leftKey = leftIndex[++leftOffset];
       rightKey = rightIndex[++rightOffset];
+    } else if (leftKeys[rightKey] - leftOffset >= rightKeys[leftKey] - rightOffset) {
+      inserts.push({left: rightChildren[rightOffset], right: rightOffset});
+      leftMoved.push(leftKeys[rightKey]);
+      rightKey = rightIndex[++rightOffset];
     } else {
-      leftDistance = leftKeys[rightKey] - leftOffset;
-      rightDistance = rightKeys[leftKey] - rightOffset;
-
-      if (leftDistance > rightDistance) {
-        inserts.push({
-          to: rightOffset,
-          left: leftChildren[leftKeys[rightKey]],
-          right: rightChildren[rightOffset]
-        });
-
-        leftMoved.push(leftKeys[rightKey]);
-        rightKey = rightIndex[++rightOffset];
-      } else {
-        inserts.push({
-          to: leftOffset,
-          left: leftChildren[leftOffset],
-          right: rightChildren[rightKeys[leftKey]]
-        });
-
-        rightMoved.push(rightKeys[leftKey]);
-        leftKey = leftIndex[++leftOffset];
-      }
+      inserts.push({left: leftChildren[leftOffset], right: rightKeys[leftKey]});
+      rightMoved.push(rightKeys[leftKey]);
+      leftKey = leftIndex[++leftOffset];
     }
   }
 
   if (removes.length === 0 && inserts.length === 0) {
-    return {children: next, moves: null};
+    return {children: leftChildren, moves: null};
   }
 
   return {
-    children: next,
+    children: leftChildren,
     moves: {removes: removes, inserts: inserts}
   };
 }
@@ -280,6 +254,11 @@ function keyIndex(children) {
 
   while (++index < length) {
     child = children[index];
+
+    if (!child) {
+      continue;
+    }
+
     key = syntheticKey(child);
 
     if (key in counts) {

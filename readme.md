@@ -164,13 +164,12 @@ In the diff:
 ## `MoveDiff`
 
 `MoveDiff` is an object with two arrays: `removes` and `inserts`.
-They are never both empty.  Objects in `inserts` and `removes` have the
-following properties:
+They always have equal lengths, and are never both empty.  Objects in
+`inserts` and `removes` have the following properties:
 
-*   `from` (`number`), if in `removes` — Current index of the child in `parent`
-*   `left` ([`Node`][node]) — Left node
-*   `right` ([`Node`][node]) — Right node
-*   `to` (`number`), if in `inserts` — Next index of the child in `parent`
+*   `left` ([`Node`][node]) — The moved node;
+*   `right` (`number`) — The index this node moved from (when in `removes`) or
+    to (when in `inserts`).
 
 ## License
 

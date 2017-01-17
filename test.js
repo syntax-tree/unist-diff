@@ -563,7 +563,17 @@ test('unist-diff', function (t) {
       st.deepEqual(
         diff(left, right),
         {
-          0: {type: 'insert', left: null, right: one},
+          0: [
+            {type: 'insert', left: null, right: one},
+            {
+              type: 'order',
+              left: left,
+              right: {
+                removes: [{left: one, right: 2}],
+                inserts: [{left: one, right: 0}]
+              }
+            }
+          ],
           left: left
         },
         'should return an `insert` if a child is prepended'
@@ -582,7 +592,15 @@ test('unist-diff', function (t) {
         {
           0: [
             {type: 'insert', left: null, right: one},
-            {type: 'insert', left: null, right: two}
+            {type: 'insert', left: null, right: two},
+            {
+              type: 'order',
+              left: left,
+              right: {
+                removes: [{left: three, right: 0}],
+                inserts: [{left: three, right: 2}]
+              }
+            }
           ],
           left: left
         },
@@ -600,7 +618,17 @@ test('unist-diff', function (t) {
       st.deepEqual(
         diff(left, right),
         {
-          0: {type: 'insert', left: null, right: two},
+          0: [
+            {type: 'insert', left: null, right: {type: 'bravo'}},
+            {
+              type: 'order',
+              left: left,
+              right: {
+                removes: [{left: two, right: 2}],
+                inserts: [{left: two, right: 1}]
+              }
+            }
+          ],
           left: left
         },
         'should return an `insert` if a child is injected'
@@ -620,7 +648,15 @@ test('unist-diff', function (t) {
         {
           0: [
             {type: 'insert', left: null, right: two},
-            {type: 'insert', left: null, right: three}
+            {type: 'insert', left: null, right: three},
+            {
+              type: 'order',
+              left: left,
+              right: {
+                removes: [{left: four, right: 1}],
+                inserts: [{left: four, right: 3}]
+              }
+            }
           ],
           left: left
         },
@@ -774,8 +810,8 @@ test('unist-diff', function (t) {
             type: 'order',
             left: left,
             right: {
-              removes: [{from: 2, left: charlie, right: charlie}],
-              inserts: [{left: charlie, right: charlie, to: 0}]
+              removes: [{left: charlie, right: 2}],
+              inserts: [{left: charlie, right: 0}]
             }
           },
           left: left
@@ -798,8 +834,8 @@ test('unist-diff', function (t) {
             type: 'order',
             left: left,
             right: {
-              removes: [{from: 2, left: alpha, right: alpha}],
-              inserts: [{left: alpha, right: alpha, to: 0}]
+              removes: [{left: alpha, right: 0}],
+              inserts: [{left: alpha, right: 2}]
             }
           },
           left: left
@@ -823,12 +859,12 @@ test('unist-diff', function (t) {
             left: left,
             right: {
               removes: [
-                {from: 1, left: bravo, right: bravo},
-                {from: 2, left: alpha, right: alpha}
+                {left: bravo, right: 1},
+                {left: charlie, right: 2}
               ],
               inserts: [
-                {to: 0, left: alpha, right: alpha},
-                {to: 1, left: bravo, right: bravo}
+                {left: charlie, right: 0},
+                {left: bravo, right: 1}
               ]
             }
           },
@@ -854,13 +890,13 @@ test('unist-diff', function (t) {
             type: 'order',
             left: alphaOne,
             right: {
-              inserts: [
-                {left: bravo, right: bravo, to: 0},
-                {left: charlie, right: charlie, to: 1}
-              ],
               removes: [
-                {from: 1, left: charlie, right: charlie},
-                {from: 2, left: bravo, right: bravo}
+                {left: charlie, right: 1},
+                {left: delta, right: 2}
+              ],
+              inserts: [
+                {left: delta, right: 0},
+                {left: charlie, right: 1}
               ]
             }
           },
@@ -886,13 +922,13 @@ test('unist-diff', function (t) {
             type: 'order',
             left: alphaOne,
             right: {
-              inserts: [
-                {left: bravo, right: bravo, to: 0},
-                {left: charlie, right: charlie, to: 1}
-              ],
               removes: [
-                {from: 1, left: charlie, right: charlie},
-                {from: 2, left: bravo, right: bravo}
+                {left: charlie, right: 1},
+                {left: delta, right: 2}
+              ],
+              inserts: [
+                {left: delta, right: 0},
+                {left: charlie, right: 1}
               ]
             }
           },
