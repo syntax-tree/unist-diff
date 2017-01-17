@@ -88,8 +88,34 @@ Yields:
    { type: 'text',
      left: { type: 'text', value: 'foo()' },
      right: { type: 'text', value: 'bar()' } },
-  left: left
-}
+  left:
+   { type: 'element',
+     tagName: 'div',
+     properties: {},
+     children:
+      [ { type: 'element',
+          tagName: 'p',
+          properties: {},
+          children:
+           [ { type: 'text', value: 'Some ' },
+             { type: 'element',
+               tagName: 'b',
+               properties: {},
+               children: [ { type: 'text', value: 'importance' } ] },
+             { type: 'text', value: ' and ' },
+             { type: 'element',
+               tagName: 'i',
+               properties: {},
+               children: [ { type: 'text', value: 'emphasis' } ] },
+             { type: 'text', value: '.' } ] },
+        { type: 'element',
+          tagName: 'pre',
+          properties: {},
+          children:
+           [ { type: 'element',
+               tagName: 'code',
+               properties: {},
+               children: [ { type: 'text', value: 'foo()' } ] } ] } ] } }
 ```
 
 ## API
