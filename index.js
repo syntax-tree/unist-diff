@@ -3,6 +3,7 @@
 var array = require('x-is-array');
 var object = require('is-object');
 var proto = require('getprototypeof');
+var size = require('unist-util-size');
 
 var objectProto = Object.prototype;
 
@@ -285,19 +286,6 @@ function syntheticKey(node) {
   }
 
   return node.type + ':' + JSON.stringify(props);
-}
-
-function size(node) {
-  var children = node && node.children;
-  var length = (children && children.length) || 0;
-  var index = -1;
-  var count = 0;
-
-  while (++index < length) {
-    count = count + 1 + size(children[index]);
-  }
-
-  return count;
 }
 
 function parent(value) {

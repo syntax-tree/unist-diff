@@ -20,6 +20,7 @@
   "dependencies": {
     "getprototypeof": "^1.0.0",
     "is-object": "^1.0.1",
+    "unist-util-size": "^1.0.0",
     "x-is-array": "^0.1.0"
   },
   "files": [
