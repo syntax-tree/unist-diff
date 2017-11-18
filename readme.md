@@ -124,8 +124,8 @@ Yields:
 
 ###### Parameters
 
-*   `left` ([`Node`][node]) — Left tree.
-*   `right` ([`Node`][node]) — Right tree.
+*   `left` ([`Node`][node]) — Left tree
+*   `right` ([`Node`][node]) — Right tree
 
 ###### Returns
 
@@ -182,10 +182,10 @@ Patches represent changes.  They come with three properties:
 
 In the diff:
 
-*   If a key is removed, the key’s value is set to `undefined`.
+*   If a key is removed, the key’s value is set to `undefined`
 *   If the new value and the old value are both plain objects, the key’s
-    value is set to a `PropsDiff` of both values.
-*   In all other cases, the key’s value is set to the new value.
+    value is set to a `PropsDiff` of both values
+*   In all other cases, the key’s value is set to the new value
 
 ### `MoveDiff`
 
@@ -193,9 +193,9 @@ In the diff:
 They always have equal lengths, and are never both empty.  Objects in
 `inserts` and `removes` have the following properties:
 
-*   `left` ([`Node`][node]) — The moved node;
+*   `left` ([`Node`][node]) — The moved node
 *   `right` (`number`) — The index this node moved from (when in `removes`) or
-    to (when in `inserts`).
+    to (when in `inserts`)
 
 ## License
 
