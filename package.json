@@ -11,7 +11,7 @@
     "node",
     "patch"
   ],
-  "repository": "https://github.com/syntax-tree/unist-diff",
+  "repository": "syntax-tree/unist-diff",
   "bugs": "https://github.com/syntax-tree/unist-diff/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
