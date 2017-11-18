@@ -197,6 +197,14 @@ They always have equal lengths, and are never both empty.  Objects in
 *   `right` (`number`) — The index this node moved from (when in `removes`) or
     to (when in `inserts`)
 
+## Contribute
+
+See [`contribute.md` in `syntax-tree/unist`][contribute] for ways to get
+started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
@@ -230,3 +238,7 @@ They always have equal lengths, and are never both empty.  Objects in
 [vtree]: https://github.com/Matt-Esch/virtual-dom/tree/master/vtree
 
 [vdom]: https://github.com/Matt-Esch/virtual-dom
+
+[contribute]: https://github.com/syntax-tree/unist/blob/master/contributing.md
+
+[coc]: https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md
