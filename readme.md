@@ -129,9 +129,14 @@ Yields:
 
 ###### Returns
 
-`Array.<Patch>` — List of one or [`patch`es][patch].
+Object with:
 
-### `Patch`
+- keys with:
+  - one patch `index: Patch` or
+  - many patches `index: [Patch]`
+- key `left`: the original left tree
+
+### Type `Patch`
 
 Patches represent changes.  They come with three properties:
 
@@ -140,43 +145,43 @@ Patches represent changes.  They come with three properties:
 *   `right` ([`Node`][node], [`PropsDiff`][propsdiff], [`MoveDiff`][movediff],
     optional) — New thing
 
-#### `remove`
+#### Patch with `.type === 'remove'`
 
 *   `type` (`'remove'`)
 *   `left` ([`Node`][node]) — Left node
 *   `right` (`null`)
 
-#### `insert`
+#### Patch with `.type === 'insert'`
 
 *   `type` (`'insert'`)
 *   `left` (`null`)
 *   `right` ([`Node`][node]) — Right node
 
-#### `replace`
+#### Patch with `.type === 'replace'`
 
 *   `type` (`'node'`)
 *   `left` ([`Node`][node]) — Left node
 *   `right` ([`Node`][node]) — Right node
 
-#### `props`
+#### Patch with `.type === 'props'`
 
 *   `type` (`'props'`)
 *   `left` ([`Node`][node]) — Left node
 *   `right` ([`PropsDiff`][propsdiff])
 
-#### `text`
+#### Patch with `.type === 'text'`
 
 *   `type` (`'text'`)
 *   `left` ([`Node`][node]) — Left node
 *   `right` ([`Node`][node]) — Right node
 
-#### `order`
+#### Patch with `.type === 'order'`
 
 *   `type` (`'order'`)
 *   `left` ([`Node`][node]) — Parent node
 *   `right` ([`MoveDiff`][movediff]) — Reorder
 
-### `PropsDiff`
+### Type `PropsDiff`
 
 `PropsDiff` is an object mapping keys to new values.
 
@@ -187,7 +192,7 @@ In the diff:
     value is set to a `PropsDiff` of both values
 *   In all other cases, the key’s value is set to the new value
 
-### `MoveDiff`
+### Type `MoveDiff`
 
 `MoveDiff` is an object with two arrays: `removes` and `inserts`.
 They always have equal lengths, and are never both empty.  Objects in
