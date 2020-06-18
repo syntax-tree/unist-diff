@@ -54,20 +54,24 @@ Yields:
 
 ```js
 { '1':
-   [ { type: 'insert',
+   [
+     { type: 'insert',
        left: null,
        right:
         { type: 'element',
           tagName: 'strong',
           properties: {},
-          children: [ { type: 'text', value: 'importance' } ] } },
+          children: [ { type: 'text', value: 'importance' } ] }
+     },
      { type: 'insert',
        left: null,
        right:
         { type: 'element',
           tagName: 'em',
           properties: {},
-          children: [ { type: 'text', value: 'emphasis' } ] } } ],
+          children: [ { type: 'text', value: 'emphasis' } ] }
+      }
+   ],
   '3':
    { type: 'remove',
      left:
