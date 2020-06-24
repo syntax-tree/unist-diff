@@ -123,7 +123,8 @@ Diff two trees.
 
 ###### Returns
 
-`Array.<Patch>` — List of one or [`patch`es][patch].
+`Object.<Patch|Patches>` — Object mapping indices of nodes to one or more
+patches.
 
 ### `Patch`
 
@@ -262,8 +263,6 @@ abide by its terms.
 [unist]: https://github.com/syntax-tree/unist
 
 [node]: https://github.com/syntax-tree/unist#node
-
-[patch]: #patch
 
 [propsdiff]: #propsdiff
 
