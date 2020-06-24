@@ -1,3 +1,5 @@
+<!--lint disable no-html-->
+
 # unist-diff
 
 [![Build][build-badge]][build]
@@ -12,6 +14,11 @@
 
 Based on the [`vtree`][vtree] diffing algorithm in [`virtual-dom`][vdom],
 but for Unist.
+
+> ‼️ Work in progress / unstable / broken / experimental
+
+<details>
+<summary>See preliminary docs</summary>
 
 One caveat is that unist does not support keys.
 Keys are what allow performant reordering of children.
@@ -132,7 +139,8 @@ Patches represent changes.
 They come with three properties:
 
 *   `type` (`string`)
-    — Type of change
+    — Type of change (either `'remove'`, `'insert'`, `'replace'`, `'props'`,
+    `'text'`, or `'order'`)
 *   `left` ([`Node`][node], optional)
     — Left node
 *   `right` ([`Node`][node], [`PropsDiff`][propsdiff], [`MoveDiff`][movediff],
@@ -205,6 +213,8 @@ Objects in `inserts` and `removes` have the following properties:
 *   `right` (`number`)
     — The index this node moved from (when in `removes`) or to (when in
     `inserts`)
+
+</details>
 
 ## Contribute
 
