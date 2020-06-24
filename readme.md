@@ -28,19 +28,13 @@ npm install unist-diff
 ## Use
 
 ```js
-var h = require('hastscript');
-var diff = require('unist-diff');
+var h = require('hastscript')
+var diff = require('unist-diff')
 
 var left = h('div', [
-  h('p', [
-    'Some ',
-    h('b', 'importance'),
-    ' and ',
-    h('i', 'emphasis'),
-    '.'
-  ]),
+  h('p', ['Some ', h('b', 'importance'), ' and ', h('i', 'emphasis'), '.']),
   h('pre', h('code', 'foo()'))
-]);
+])
 
 var right = h('div', [
   h('p', [
@@ -51,77 +45,64 @@ var right = h('div', [
     '.'
   ]),
   h('pre', h('code', 'bar()'))
-]);
+])
 
-console.dir(diff(left, right), {depth: null});
+console.dir(diff(left, right), {depth: null})
 ```
 
 Yields:
 
 ```js
-{ '1':
-   [ { type: 'insert',
-       left: null,
-       right:
-        { type: 'element',
-          tagName: 'strong',
-          properties: {},
-          children: [ { type: 'text', value: 'importance' } ] } },
-     { type: 'insert',
-       left: null,
-       right:
-        { type: 'element',
-          tagName: 'em',
-          properties: {},
-          children: [ { type: 'text', value: 'emphasis' } ] } } ],
-  '3':
-   { type: 'remove',
-     left:
-      { type: 'element',
-        tagName: 'b',
+{
+  '1': [
+    {
+      type: 'insert',
+      left: null,
+      right: {
+        type: 'element',
+        tagName: 'strong',
         properties: {},
-        children: [ { type: 'text', value: 'importance' } ] },
-     right: null },
-  '6':
-   { type: 'remove',
-     left:
-      { type: 'element',
-        tagName: 'i',
+        children: [{type: 'text', value: 'importance'}]
+      }
+    },
+    {
+      type: 'insert',
+      left: null,
+      right: {
+        type: 'element',
+        tagName: 'em',
         properties: {},
-        children: [ { type: 'text', value: 'emphasis' } ] },
-     right: null },
-  '11':
-   { type: 'text',
-     left: { type: 'text', value: 'foo()' },
-     right: { type: 'text', value: 'bar()' } },
-  left:
-   { type: 'element',
-     tagName: 'div',
-     properties: {},
-     children:
-      [ { type: 'element',
-          tagName: 'p',
-          properties: {},
-          children:
-           [ { type: 'text', value: 'Some ' },
-             { type: 'element',
-               tagName: 'b',
-               properties: {},
-               children: [ { type: 'text', value: 'importance' } ] },
-             { type: 'text', value: ' and ' },
-             { type: 'element',
-               tagName: 'i',
-               properties: {},
-               children: [ { type: 'text', value: 'emphasis' } ] },
-             { type: 'text', value: '.' } ] },
-        { type: 'element',
-          tagName: 'pre',
-          properties: {},
-          children:
-           [ { type: 'element',
-               tagName: 'code',
-               properties: {},
-               children: [ { type: 'text', value: 'foo()' } ] } ] } ] } }
+        children: [{type: 'text', value: 'emphasis'}]
+      }
+    }
+  ],
+  '3': {
+    type: 'remove',
+    left: {
+      type: 'element',
+      tagName: 'b',
+      properties: {},
+      children: [{type: 'text', value: 'importance'}]
+    },
+    right: null
+  },
+  '6': {
+    type: 'remove',
+    left: {
+      type: 'element',
+      tagName: 'i',
+      properties: {},
+      children: [{type: 'text', value: 'emphasis'}]
+    },
+    right: null
+  },
+  '11': {
+    type: 'text',
+    left: {type: 'text', value: 'foo()'},
+    right: {type: 'text', value: 'bar()'}
+  },
+  left: Node // Reference to the tree at `left`.
+}
 ```
 
 ## API
