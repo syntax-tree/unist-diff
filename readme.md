@@ -1,5 +1,7 @@
 # unist-diff [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
+> **Note:**  This project is "work-in-process" and has bugs. Pull Requests and bug fixes are welcome.
+
 Diff two [**Unist**][unist] trees.
 
 Based on the [`vtree`][vtree] diffing algorithm in [`virtual-dom`][vdom],
