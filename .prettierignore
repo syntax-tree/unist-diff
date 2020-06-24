@@ -1,0 +1,5 @@
+coverage/
+unist-diff.js
+unist-diff.min.js
+*.json
+*.md

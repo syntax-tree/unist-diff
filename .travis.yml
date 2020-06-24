@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- '4.0'
-- '9.0'
+  - '4.0'
+  - '9.0'
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: npm
@@ -17,8 +17,8 @@ deploy:
     api_key:
       secure: yEFijtrBssWEtkLBXiB9y8w+qLdFa/8hkgc+ucsb0nU6f3UPjmN0c2VeqkrjlFCPJXZ5yesrVIJYR454f8jonGUHjyS+hnlZRxYpTVAzmENPUjBKJ1p6DkFhgT/APy9jVYpodPQapv89zYymFYo/+ObK1U1NuRS/8y9uQHpUYZCbIAbB7GXStHS9BFpBSDaTm0jjLsEjbFLd5Q5qUZ6WmvBpzCWd2U5xVt1cWKn0kD+FzXDUwdohUTiLIIU5oOzOABxWuBdCmnu64F5D+0wUsRkrSGHY18dHrbBEzv1woTzoJ9pTffh3k80FVUFcliBahh9qtd8tw5L1wsRO5KSma6UsqRIAPiIgiApUiF3O64xTUYNBpymvrW+bwT03QGfp77vtsly2nHiCOS891VMGFq7XJPP7ZOiF/GC2erAF/AdEwnMFYc5161y+wOO/EbyII8H4Jr3CG9wkvhX4DpeEeTO0ahd2nnjUJicgzz/OWkDNHU8DY25RAoNs3frAWgUuqpKTgmwE7Pf8jqI+/X08pDdOVkIdKNkKFJIZ9VVFM3U1u6hFff+VI9702fmFQT9cr0YXbJKKa7y09n9MCsJMlfZJbsROpH7TCSCrYi1VM3vx9LDt6y6Dr6RSdc+JwXJCqxDeFlcAk3kDQHNHc1HHObRPFVFF3AWzymJ6drgFq8I=
     file:
-      - "unist-diff.js"
-      - "unist-diff.min.js"
+      - 'unist-diff.js'
+      - 'unist-diff.min.js'
     on:
       tags: true
       node: '9.0'

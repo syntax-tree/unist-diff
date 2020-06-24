@@ -19,31 +19,30 @@
   ],
   "dependencies": {
     "getprototypeof": "^1.0.0",
-    "is-object": "^1.0.1",
-    "unist-util-size": "^1.0.0",
+    "is-object": "^1.0.0",
+    "unist-util-size": "^2.0.0",
     "x-is-array": "^0.1.0"
   },
   "files": [
     "index.js"
   ],
   "devDependencies": {
-    "browserify": "^14.0.0",
-    "esmangle": "^1.0.1",
-    "nyc": "^11.0.0",
-    "remark-cli": "^4.0.0",
-    "remark-preset-wooorm": "^3.0.0",
-    "tape": "^4.0.0",
-    "xo": "^0.18.0"
+    "browserify": "^16.0.0",
+    "nyc": "^15.0.0",
+    "remark-cli": "^8.0.0",
+    "remark-preset-wooorm": "^7.0.0",
+    "tape": "^5.0.0",
+    "tinyify": "^2.0.0",
+    "xo": "^0.32.0"
   },
   "scripts": {
-    "build-md": "remark . -qfo",
-    "build-bundle": "browserify index.js --bare -s unistDiff > unist-diff.js",
-    "build-mangle": "esmangle < unist-diff.js > unist-diff.min.js",
-    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
-    "lint": "xo",
+    "format": "remark . -qfo && prettier . --write && xo --fix",
+    "build-bundle": "browserify . -s unistDiff -o unist-diff.js",
+    "build-mangle": "browserify . -s unistDiff -p tinyify -o unist-diff.min.js",
+    "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test.js",
-    "test": "npm run build && npm run lint && npm run test-coverage"
+    "test": "npm run format && npm run build && npm run test-coverage"
   },
   "nyc": {
     "check-coverage": true,
@@ -51,10 +50,19 @@
     "functions": 100,
     "branches": 100
   },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
   "xo": {
-    "space": true,
+    "prettier": true,
     "esnext": false,
     "rules": {
+      "unicorn/prefer-includes": "off",
       "max-params": "off"
     },
     "ignores": [
