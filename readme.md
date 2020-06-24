@@ -10,6 +10,9 @@
 
 [**unist**][unist] utility to diff two trees.
 
+Based on the [`vtree`][vtree] diffing algorithm in [`virtual-dom`][vdom],
+but for Unist.
+
 One caveat is that unist does not support keys.
 Keys are what allow performant reordering of children.
 To deal with that, `unist-diff` uses “synthetic” keys based on the properties
@@ -265,3 +268,7 @@ abide by its terms.
 [propsdiff]: #propsdiff
 
 [movediff]: #movediff
+
+[vtree]: https://github.com/Matt-Esch/virtual-dom/tree/HEAD/vtree
+
+[vdom]: https://github.com/Matt-Esch/virtual-dom
