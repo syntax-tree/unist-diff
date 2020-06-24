@@ -1,24 +1,5 @@
 language: node_js
 node_js:
-  - '4.0'
-  - '9.0'
+  - lts/dubnium
+  - node
 after_script: bash <(curl -s https://codecov.io/bash)
-deploy:
-  - provider: npm
-    skip_cleanup: true
-    email: tituswormer@gmail.com
-    api_key:
-      secure: Y5Kijr1X+emYHbPQ2bD09GrZr/Z/22MoWiUSRR2cys7HXDJL9HQ24smmFWS7rNbqRrzq/wX2kgWakLuohDwCiTyWQFUlZIHiJ2AsU1ChT80zJ3PDXdgteb3WLMBOLp9PN+DoUIF0DLbcfwgq0rfRxJUIM4cnfWqX3VJSSfxx8EwiIWMDujWp6vEyJ8lYWXMHKbIkC/Ugi4Qy3Vg8ec2W7QCEsrY3bylQfGulAUYSWMVYlB4OHzFiHZ3Nuuh++cgUFbD0bHNFizj3BkOL573FII6Ta3krCTwJxGrQp4cTrbeu6mieTV5GEvG2lEnk4mmvkBV4/rQzrX/ICArWm2cD/yGkY+O4QisF+cbun0xYW8FbGOoYSg8VXfQyd54UUiM++3aaooeYbZgu4bAO4awzEWJZOgFCHWHKdYlSvhVzq3PSg2Gics/bsgRhe6u7+9I3x8DPk4m9kDaHHFS8Y0m2qiLbwB7iWIdVH5gH7FPEG7wlsiwT6ZpJKecs3ebhCL2WzfYH10ryK9XpJZgXS0UTgSN4rKxr+Iv1nuLZzXNwIkJ3hNj1GFzxC9+g80HEiNsR1VGqESaoFgHKal8HXSyjyprJHktl9QokUb8odlYzci0+THJWj95ZPJwD6aoqia+u5/GHPQ4oX/a9/YzhabYdj+QI+rNwe1v7LIutovY5RQ4=
-    on:
-      tags: true
-      node: '9.0'
-  - provider: releases
-    skip_cleanup: true
-    api_key:
-      secure: yEFijtrBssWEtkLBXiB9y8w+qLdFa/8hkgc+ucsb0nU6f3UPjmN0c2VeqkrjlFCPJXZ5yesrVIJYR454f8jonGUHjyS+hnlZRxYpTVAzmENPUjBKJ1p6DkFhgT/APy9jVYpodPQapv89zYymFYo/+ObK1U1NuRS/8y9uQHpUYZCbIAbB7GXStHS9BFpBSDaTm0jjLsEjbFLd5Q5qUZ6WmvBpzCWd2U5xVt1cWKn0kD+FzXDUwdohUTiLIIU5oOzOABxWuBdCmnu64F5D+0wUsRkrSGHY18dHrbBEzv1woTzoJ9pTffh3k80FVUFcliBahh9qtd8tw5L1wsRO5KSma6UsqRIAPiIgiApUiF3O64xTUYNBpymvrW+bwT03QGfp77vtsly2nHiCOS891VMGFq7XJPP7ZOiF/GC2erAF/AdEwnMFYc5161y+wOO/EbyII8H4Jr3CG9wkvhX4DpeEeTO0ahd2nnjUJicgzz/OWkDNHU8DY25RAoNs3frAWgUuqpKTgmwE7Pf8jqI+/X08pDdOVkIdKNkKFJIZ9VVFM3U1u6hFff+VI9702fmFQT9cr0YXbJKKa7y09n9MCsJMlfZJbsROpH7TCSCrYi1VM3vx9LDt6y6Dr6RSdc+JwXJCqxDeFlcAk3kDQHNHc1HHObRPFVFF3AWzymJ6drgFq8I=
-    file:
-      - 'unist-diff.js'
-      - 'unist-diff.min.js'
-    on:
-      tags: true
-      node: '9.0'

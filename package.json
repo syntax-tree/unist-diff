@@ -1,14 +1,17 @@
 {
   "name": "unist-diff",
   "version": "2.0.0",
-  "description": "Diff two unist trees",
+  "description": "unist utility to diff two trees",
   "license": "MIT",
   "keywords": [
     "unist",
+    "unist-util",
+    "util",
+    "utility",
+    "tree",
+    "ast",
     "node",
     "diff",
-    "tree",
-    "node",
     "patch"
   ],
   "repository": "syntax-tree/unist-diff",

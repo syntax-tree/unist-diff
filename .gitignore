@@ -5,3 +5,4 @@ coverage/
 node_modules/
 unist-diff.js
 unist-diff.min.js
+yarn.lock
