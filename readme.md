@@ -1,25 +1,31 @@
-# unist-diff [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# unist-diff
 
-Diff two [**Unist**][unist] trees.
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
-Based on the [`vtree`][vtree] diffing algorithm in [`virtual-dom`][vdom],
-but for Unist.
+[**unist**][unist] utility to diff two trees.
 
-One caveat is that “Unist” does not support keys.  Keys are what allow
-performant reordering of children.  To deal with that, `unist-diff` uses
-“synthetic” keys based on the properties on nodes (excluding their value
-or their children).  This is not ideal but it’s better than nothing.
+One caveat is that unist does not support keys.
+Keys are what allow performant reordering of children.
+To deal with that, `unist-diff` uses “synthetic” keys based on the properties
+on nodes (excluding their value or their children).
+This is not ideal but it’s better than nothing.
 Let’s see how it goes!
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install unist-diff
 ```
 
-## Usage
+## Use
 
 ```js
 var h = require('hastscript');
@@ -122,10 +128,14 @@ Yields:
 
 ### `diff(left, right)`
 
+Diff two trees.
+
 ###### Parameters
 
-*   `left` ([`Node`][node]) — Left tree
-*   `right` ([`Node`][node]) — Right tree
+*   `left` ([`Node`][node])
+    — Left tree
+*   `right` ([`Node`][node])
+    — Right tree
 
 ###### Returns
 
@@ -133,48 +143,61 @@ Yields:
 
 ### `Patch`
 
-Patches represent changes.  They come with three properties:
+Patches represent changes.
+They come with three properties:
 
-*   `type` (`string`) — Type of change
-*   `left` ([`Node`][node], optional) — Left node
+*   `type` (`string`)
+    — Type of change
+*   `left` ([`Node`][node], optional)
+    — Left node
 *   `right` ([`Node`][node], [`PropsDiff`][propsdiff], [`MoveDiff`][movediff],
-    optional) — New thing
+    optional)
+    — New thing
 
 #### `remove`
 
 *   `type` (`'remove'`)
-*   `left` ([`Node`][node]) — Left node
+*   `left` ([`Node`][node])
+    — Left node
 *   `right` (`null`)
 
 #### `insert`
 
 *   `type` (`'insert'`)
 *   `left` (`null`)
-*   `right` ([`Node`][node]) — Right node
+*   `right` ([`Node`][node])
+    — Right node
 
 #### `replace`
 
 *   `type` (`'node'`)
-*   `left` ([`Node`][node]) — Left node
-*   `right` ([`Node`][node]) — Right node
+*   `left` ([`Node`][node])
+    — Left node
+*   `right` ([`Node`][node])
+    — Right node
 
 #### `props`
 
 *   `type` (`'props'`)
-*   `left` ([`Node`][node]) — Left node
+*   `left` ([`Node`][node])
+    — Left node
 *   `right` ([`PropsDiff`][propsdiff])
 
 #### `text`
 
 *   `type` (`'text'`)
-*   `left` ([`Node`][node]) — Left node
-*   `right` ([`Node`][node]) — Right node
+*   `left` ([`Node`][node])
+    — Left node
+*   `right` ([`Node`][node])
+    — Right node
 
 #### `order`
 
 *   `type` (`'order'`)
-*   `left` ([`Node`][node]) — Parent node
-*   `right` ([`MoveDiff`][movediff]) — Reorder
+*   `left` ([`Node`][node])
+    — Parent node
+*   `right` ([`MoveDiff`][movediff])
+    — Reorder
 
 ### `PropsDiff`
 
@@ -190,20 +213,23 @@ In the diff:
 ### `MoveDiff`
 
 `MoveDiff` is an object with two arrays: `removes` and `inserts`.
-They always have equal lengths, and are never both empty.  Objects in
-`inserts` and `removes` have the following properties:
+They always have equal lengths, and are never both empty.
+Objects in `inserts` and `removes` have the following properties:
 
 *   `left` ([`Node`][node]) — The moved node
-*   `right` (`number`) — The index this node moved from (when in `removes`) or
-    to (when in `inserts`)
+*   `right` (`number`)
+    — The index this node moved from (when in `removes`) or to (when in
+    `inserts`)
 
 ## Contribute
 
-See [`contribute.md` in `syntax-tree/unist`][contribute] for ways to get
+See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
 started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [code of conduct][coc].
+By interacting with this repository, organization, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -211,19 +237,43 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/syntax-tree/unist-diff.svg
+[build-badge]: https://img.shields.io/travis/syntax-tree/unist-diff.svg
 
-[travis]: https://travis-ci.org/syntax-tree/unist-diff
+[build]: https://travis-ci.org/syntax-tree/unist-diff
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-diff.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-diff.svg
 
-[codecov]: https://codecov.io/github/syntax-tree/unist-diff
+[coverage]: https://codecov.io/github/syntax-tree/unist-diff
+
+[downloads-badge]: https://img.shields.io/npm/dm/unist-diff.svg
+
+[downloads]: https://www.npmjs.com/package/unist-diff
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/unist-diff.svg
+
+[size]: https://bundlephobia.com/result?p=unist-diff
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
+[chat-badge]: https://img.shields.io/badge/chat-spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/syntax-tree
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[license]: LICENSE
+[license]: license
 
-[author]: http://wooorm.com
+[author]: https://wooorm.com
+
+[contributing]: https://github.com/syntax-tree/.github/blob/HEAD/contributing.md
+
+[support]: https://github.com/syntax-tree/.github/blob/HEAD/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/HEAD/code-of-conduct.md
 
 [unist]: https://github.com/syntax-tree/unist
 
@@ -234,11 +284,3 @@ repository, organisation, or community you agree to abide by its terms.
 [propsdiff]: #propsdiff
 
 [movediff]: #movediff
-
-[vtree]: https://github.com/Matt-Esch/virtual-dom/tree/master/vtree
-
-[vdom]: https://github.com/Matt-Esch/virtual-dom
-
-[contribute]: https://github.com/syntax-tree/unist/blob/master/contributing.md
-
-[coc]: https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md
